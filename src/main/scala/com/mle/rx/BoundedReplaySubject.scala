@@ -1,6 +1,5 @@
 package com.mle.rx
 
-import rx.operators.OperationReplay.CustomReplaySubject
 import rx.lang.scala.Subject
 
 /**
@@ -10,8 +9,7 @@ import rx.lang.scala.Subject
  */
 object BoundedReplaySubject {
   def apply[T](n: Int): BoundedReplaySubject[T] =
-    new BoundedReplaySubject[T](CustomReplaySubject.create(n))
+    new BoundedReplaySubject[T](rx.subjects.ReplaySubject.createWithSize(n))
 }
 
-class BoundedReplaySubject[T](val asJavaSubject: rx.operators.OperationReplay.CustomReplaySubject[T, T, T])
-  extends Subject[T]
+class BoundedReplaySubject[T](val asJavaSubject: rx.subjects.ReplaySubject[T]) extends Subject[T]

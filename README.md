@@ -1,7 +1,11 @@
 # logback-rx #
 
 This library provides Rx Observables for events logged using Logback.
-You might find this useful if you wish to push log events to your user interface with minimal delay.
+You might find this useful if you wish to stream log events to your user interface with minimal delay.
+
+## Installation ##
+
+```"com.github.malliina" %% "logback-rx" % "0.1.0"```
 
 ## Features ##
 
