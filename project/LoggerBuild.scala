@@ -10,7 +10,7 @@ object LoggerBuild extends Build {
   lazy val project = SbtUtils.testableProject("logback-rx").settings(projectSettings: _*)
 
   lazy val projectSettings = SbtUtils.publishSettings ++ Seq(
-    version := "0.1.0",
+    version := "0.1.1",
     SbtUtils.gitUserName := "malliina",
     SbtUtils.developerName := "Michael Skogberg",
     scalaVersion := "2.11.2",

@@ -12,6 +12,4 @@ class PublishRxAppender[E] extends RxAppenderBase[E] {
   override protected val subject: Subject[E] = Subject[E]()
 }
 
-class BasicPublishRxAppender
-  extends PublishRxAppender[ILoggingEvent]
-  with EventMapping
+class BasicPublishRxAppender extends PublishRxAppender[ILoggingEvent] with EventMapping

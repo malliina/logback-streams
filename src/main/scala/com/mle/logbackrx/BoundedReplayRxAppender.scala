@@ -14,8 +14,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent
  *
  * @author mle
  */
-class BoundedReplayRxAppender[E]
-  extends RxAppenderBase[E] {
+class BoundedReplayRxAppender[E] extends RxAppenderBase[E] {
 
   private var bufferSize = 1000
   private var innerSubject = BoundedReplaySubject[E](bufferSize)
@@ -32,6 +31,4 @@ class BoundedReplayRxAppender[E]
   }
 }
 
-class BasicBoundedReplayRxAppender
-  extends BoundedReplayRxAppender[ILoggingEvent]
-  with EventMapping
+class BasicBoundedReplayRxAppender extends BoundedReplayRxAppender[ILoggingEvent] with EventMapping

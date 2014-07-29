@@ -11,12 +11,12 @@ You might find this useful if you wish to stream log events to your user interfa
 
 Log events are pushed to Observables using custom Logback appenders. The PublishRxAppender provides an Observable
 that emits any events subsequent to a subscription. The BoundedReplayRxAppender emits a history of log events and any
-following events. The bufferSize property controls the maximum number of log events to replay.
+following events. The bufferSize property controls the maximum number of log events to replay. 
 
 ## Usage ##
 
-Add a custom Logback appender to your Logback configuration, then obtain it in
-code to access the Observable of log events.
+Add a custom Logback appender to your Logback configuration, then obtain it in code to access the Observable of log 
+events.
 
 Here's an example logback.xml:
 
@@ -25,6 +25,7 @@ Here's an example logback.xml:
     <appender name="RX" class="com.mle.logbackrx.BasicPublishRxAppender"/>
     <appender name="BOUNDED" class="com.mle.logbackrx.BasicBoundedReplayRxAppender">
         <bufferSize>100</bufferSize>
+        <timeFormat>yyyy:MM:dd HH:mm:ss</timeFormat>
     </appender>
     <root level="INFO">
         <appender-ref ref="RX"/>
@@ -32,6 +33,9 @@ Here's an example logback.xml:
     </root>
 </configuration>
 ```
+
+To customize time formatting, use the timeFormat property of the appenders, which works according to the 
+SimpleDateFormat time syntax.
 
 In order to access the Observable of log events, you need to get the appender first:
 
