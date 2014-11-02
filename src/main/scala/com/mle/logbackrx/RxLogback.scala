@@ -1,14 +1,19 @@
 package com.mle.logbackrx
 
-import ch.qos.logback.core.{CoreConstants, AppenderBase}
-import rx.lang.scala.{Observable, Observer, Subject}
 import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.{AppenderBase, CoreConstants}
+import rx.lang.scala.{Observable, Observer, Subject}
 
 /**
  *
  * @author mle
  */
 object RxLogback {
+  val defaultFormatter = new TimeFormatter(CoreConstants.ISO8601_PATTERN)
+
+  def defaultFormat(time: Long): String = {
+    defaultFormatter format time
+  }
 
   /**
    * A Logback appender that provides an [[Observable]] of log events.
@@ -41,5 +46,6 @@ object RxLogback {
   trait EventMapping extends RxAppenderBase[ILoggingEvent] with TimeFormatting[ILoggingEvent] {
     lazy val logEvents = events.map(e => LogEvent.fromLogbackEvent(e, format))
   }
+
 
 }
