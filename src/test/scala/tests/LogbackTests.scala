@@ -24,6 +24,7 @@ class LogbackTests extends FunSuite {
     s.unsubscribe()
     assert(emittedMessage contains actualMessage)
   }
+
   test("stacktrace") {
     val testException = new TestException
     val expectedMsg = "Failure!"
