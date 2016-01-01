@@ -1,4 +1,4 @@
-package com.mle.logbackrx
+package com.malliina.logbackrx
 
 import ch.qos.logback.core.CoreConstants
 import ch.qos.logback.core.util.CachingDateFormatter

@@ -1,4 +1,4 @@
-package com.mle.play.json
+package com.malliina.play.json
 
 import play.api.libs.json.{JsValue, Json, Writes}
 

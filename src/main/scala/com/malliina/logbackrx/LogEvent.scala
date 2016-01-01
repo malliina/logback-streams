@@ -1,8 +1,8 @@
-package com.mle.logbackrx
+package com.malliina.logbackrx
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.spi.{ILoggingEvent, IThrowableProxy, StackTraceElementProxy}
-import com.mle.play.json.ToStringWriter
+import com.malliina.play.json.ToStringWriter
 import play.api.libs.json._
 
 /**

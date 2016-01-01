@@ -1,7 +1,7 @@
 package tests
 
 import ch.qos.logback.classic.spi.ILoggingEvent
-import com.mle.logbackrx.{LogEvent, LogbackUtils, PublishRxAppender, RxLogback}
+import com.malliina.logbackrx.{LogEvent, LogbackUtils, PublishRxAppender, RxLogback}
 import org.scalatest.FunSuite
 import org.slf4j.LoggerFactory
 

@@ -1,9 +1,9 @@
-package com.mle.logbackrx
+package com.malliina.logbackrx
 
-import com.mle.rx.BoundedReplaySubject
-import com.mle.logbackrx.RxLogback.{EventMapping, RxAppenderBase}
-import rx.lang.scala.Subject
 import ch.qos.logback.classic.spi.ILoggingEvent
+import com.malliina.logbackrx.RxLogback.{EventMapping, RxAppenderBase}
+import com.malliina.rx.BoundedReplaySubject
+import rx.lang.scala.Subject
 
 /**
  * From http://logback.qos.ch/manual/appenders.html:

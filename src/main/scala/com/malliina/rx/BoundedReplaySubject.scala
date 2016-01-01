@@ -1,4 +1,4 @@
-package com.mle.rx
+package com.malliina.rx
 
 import rx.lang.scala.Subject
 

@@ -1,10 +1,10 @@
 package tests
 
+import com.malliina.rx.BoundedReplaySubject
 import org.scalatest.FunSuite
 import rx.lang.scala.Observable
 import concurrent.duration._
 import rx.lang.scala.subjects.{AsyncSubject, ReplaySubject, BehaviorSubject}
-import com.mle.rx.BoundedReplaySubject
 
 /**
  *
