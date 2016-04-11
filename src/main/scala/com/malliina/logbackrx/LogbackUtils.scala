@@ -5,10 +5,6 @@ import ch.qos.logback.classic.spi.ILoggingEvent
 import org.slf4j.LoggerFactory
 import ch.qos.logback.classic.{Logger, LoggerContext}
 
-/**
- *
- * @author mle
- */
 object LogbackUtils {
   def appender[T](appenderName: String, loggerName: String = org.slf4j.Logger.ROOT_LOGGER_NAME): Option[T] =
     Option(

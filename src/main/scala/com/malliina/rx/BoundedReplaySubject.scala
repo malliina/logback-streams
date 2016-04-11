@@ -2,11 +2,8 @@ package com.malliina.rx
 
 import rx.lang.scala.Subject
 
-/**
- * I don't have the competence to claim that this is actually proper, but for now I use it.
- *
- * @author mle
- */
+/** I don't have the competence to claim that this is actually proper, but for now I use it.
+  */
 object BoundedReplaySubject {
   def apply[T](n: Int): BoundedReplaySubject[T] =
     new BoundedReplaySubject[T](rx.subjects.ReplaySubject.createWithSize(n))

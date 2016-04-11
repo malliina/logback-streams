@@ -3,19 +3,16 @@ package tests
 import com.malliina.rx.BoundedReplaySubject
 import org.scalatest.FunSuite
 import rx.lang.scala.Observable
-import concurrent.duration._
-import rx.lang.scala.subjects.{AsyncSubject, ReplaySubject, BehaviorSubject}
+import rx.lang.scala.subjects.{AsyncSubject, BehaviorSubject, ReplaySubject}
 
-/**
- *
- * @author mle
- */
+import scala.concurrent.duration.DurationInt
+
 class RxTests extends FunSuite {
   test("can run test") {
 
   }
   test("can do rx") {
-    val intObs = Observable.interval(100 milliseconds)
+    val intObs = Observable.interval(100.milliseconds)
     val firstFive = intObs.take(5).toBlocking.toList
     assert(firstFive === List(0, 1, 2, 3, 4))
   }
@@ -65,14 +62,14 @@ class RxTests extends FunSuite {
     val o = obs1.take(3) ++ obs2
     assert(o.toBlocking.toList === List(1, 2, 3, 4, 5, 6))
   }
-//  test("latest, with subject") {
-//    val obs = BehaviorSubject(0)
-//    obs.subscribe(v => println(v))
-//    obs.onNext(1)
-//    assert(obs.first.toBlockingObservable.toList === Seq(1))
-//    obs.onNext(2)
-//    obs.onCompleted()
-//  }
+  //  test("latest, with subject") {
+  //    val obs = BehaviorSubject(0)
+  //    obs.subscribe(v => println(v))
+  //    obs.onNext(1)
+  //    assert(obs.first.toBlockingObservable.toList === Seq(1))
+  //    obs.onNext(2)
+  //    obs.onCompleted()
+  //  }
   test("Observable.apply") {
     val o: Observable[Int] = Observable.apply(observer => {
       observer.onNext(1)

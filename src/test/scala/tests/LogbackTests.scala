@@ -5,10 +5,6 @@ import com.malliina.logbackrx.{LogEvent, LogbackUtils, PublishRxAppender, RxLogb
 import org.scalatest.FunSuite
 import org.slf4j.LoggerFactory
 
-/**
- *
- * @author mle
- */
 class LogbackTests extends FunSuite {
   val log = LoggerFactory.getLogger(getClass)
 

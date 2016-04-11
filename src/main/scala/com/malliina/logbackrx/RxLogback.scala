@@ -4,10 +4,6 @@ import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.{AppenderBase, CoreConstants}
 import rx.lang.scala.{Observable, Observer, Subject}
 
-/**
- *
- * @author mle
- */
 object RxLogback {
   val defaultFormatter = new TimeFormatter(CoreConstants.ISO8601_PATTERN)
 

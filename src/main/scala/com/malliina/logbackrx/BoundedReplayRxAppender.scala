@@ -11,8 +11,6 @@ import rx.lang.scala.Subject
  * All properties that follow the setter/getter JavaBeans conventions are handled transparently by logback configurators.
  *
  * Therefore, this appender uses Java-style setter/getters so that it can be configured thru logback.xml
- *
- * @author mle
  */
 class BoundedReplayRxAppender[E] extends RxAppenderBase[E] {
 
