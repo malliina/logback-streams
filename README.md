@@ -5,7 +5,7 @@ You might find this useful if you wish to stream log events to your user interfa
 
 ## Installation ##
 
-```"com.github.malliina" %% "logback-rx" % "0.1.0"```
+    "com.malliina" %% "logback-rx" % "1.0.2"
 
 ## Features ##
 
@@ -20,45 +20,34 @@ events.
 
 Here's an example logback.xml:
 
-```
-<configuration>
-    <appender name="RX" class="com.mle.logbackrx.BasicPublishRxAppender"/>
-    <appender name="BOUNDED" class="com.mle.logbackrx.BasicBoundedReplayRxAppender">
-        <bufferSize>100</bufferSize>
-        <timeFormat>yyyy:MM:dd HH:mm:ss</timeFormat>
-    </appender>
-    <root level="INFO">
-        <appender-ref ref="RX"/>
-        <appender-ref ref="BOUNDED"/>
-    </root>
-</configuration>
-```
+    <configuration>
+        <appender name="RX" class="com.mle.logbackrx.BasicPublishRxAppender"/>
+        <appender name="BOUNDED" class="com.mle.logbackrx.BasicBoundedReplayRxAppender">
+            <bufferSize>100</bufferSize>
+            <timeFormat>yyyy:MM:dd HH:mm:ss</timeFormat>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="RX"/>
+            <appender-ref ref="BOUNDED"/>
+        </root>
+    </configuration>
 
 To customize time formatting, use the timeFormat property of the appenders, which works according to the 
 SimpleDateFormat time syntax.
 
 In order to access the Observable of log events, you need to get the appender first:
 
-```
-// gets appender based on name from logback.xml
-val appender = com.mle.logbackrx.LogbackUtils.getAppender[BasicPublishRxAppender]("RX")
-// subscribes to observable of log events
-val subscription = appender.logEvents.subscribe(event => println(event))
-```
+    // gets appender based on name from logback.xml
+    val appender = com.mle.logbackrx.LogbackUtils.getAppender[BasicPublishRxAppender]("RX")
+    // subscribes to observable of log events
+    val subscription = appender.logEvents.subscribe(event => println(event))
 
 You could also have installed the appender programmatically:
 
-```
-val appender = new BasicBoundedReplayRxAppender
-com.mle.logbackrx.LogbackUtils.installAppender(appender)
-appender.logEvents.subscribe(e => println(e))
-```
+    val appender = new BasicBoundedReplayRxAppender
+    com.mle.logbackrx.LogbackUtils.installAppender(appender)
+    appender.logEvents.subscribe(e => println(e))
 
 Events you log using the SLF4J API with Logback will now be emitted by the Observable:
 
-```
-log.info("Hello, world")
-```
-
-
-
+    log.info("Hello, world")
