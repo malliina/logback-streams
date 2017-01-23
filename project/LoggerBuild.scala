@@ -3,17 +3,13 @@ import com.malliina.sbtutils.SbtUtils.{developerName, gitUserName}
 import sbt.Keys._
 import sbt._
 
-/** A scala build file logger.
-  */
 object LoggerBuild {
-
   lazy val project = SbtProjects.mavenPublishProject("logback-rx")
     .settings(projectSettings: _*)
 
   lazy val projectSettings = Seq(
-    version := "1.1.0",
     gitUserName := "malliina",
-    organization := s"com.${gitUserName.value}",
+    organization := "com.malliina",
     developerName := "Michael Skogberg",
     scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
