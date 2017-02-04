@@ -1,19 +1,23 @@
-# logback-rx #
+[![Build Status](https://travis-ci.org/malliina/logback-rx.png?branch=master)](https://travis-ci.org/malliina/logback-rx)
+[![Maven Central](https://img.shields.io/maven-central/v/com.malliina/logback-rx_2.11.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.malliina%22%20AND%20a%3A%22logback-rx_2.11%22)
+
+
+# logback-rx
 
 This library provides Rx Observables for events logged using Logback.
 You might find this useful if you wish to stream log events to your user interface with minimal delay.
 
-## Installation ##
+## Installation
 
-    "com.malliina" %% "logback-rx" % "1.0.2"
+    "com.malliina" %% "logback-rx" % "1.1.0"
 
-## Features ##
+## Features
 
 Log events are pushed to Observables using custom Logback appenders. The PublishRxAppender provides an Observable
 that emits any events subsequent to a subscription. The BoundedReplayRxAppender emits a history of log events and any
 following events. The bufferSize property controls the maximum number of log events to replay. 
 
-## Usage ##
+## Usage
 
 Add a custom Logback appender to your Logback configuration, then obtain it in code to access the Observable of log 
 events.
