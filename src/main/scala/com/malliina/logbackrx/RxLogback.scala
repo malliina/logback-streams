@@ -25,7 +25,7 @@ object RxLogback {
   }
 
   trait TimeFormatting[E] extends AppenderBase[E] {
-    private var formatter = new TimeFormatter(CoreConstants.ISO8601_PATTERN)
+    private var formatter: TimeFormatter = RxLogback.defaultFormatter
 
     def getTimeFormat: String = formatter.timeFormat
 
