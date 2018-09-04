@@ -12,9 +12,9 @@ class LogbackTests extends FunSuite {
     val actualMessage = "hello, world"
     var emittedMessage: Option[String] = None
     val appender = new PublishRxAppender[ILoggingEvent]
-    val s = appender.events.subscribe(e => {
-      emittedMessage = Some(e.getMessage)
-    })
+    val s = appender.events.subscribe { e =>
+      emittedMessage = Option(e.getMessage)
+    }
     LogbackUtils.installAppender(appender)
     log info actualMessage
     s.unsubscribe()
@@ -26,13 +26,15 @@ class LogbackTests extends FunSuite {
     val expectedMsg = "Failure!"
     var actualEvent: Option[ILoggingEvent] = None
     val appender = new PublishRxAppender[ILoggingEvent]
-    val s = appender.events.subscribe(e => {
+    val s = appender.events.subscribe { e =>
       actualEvent = Some(e)
-    })
+    }
     LogbackUtils.installAppender(appender)
     log.error(expectedMsg, testException)
     s.unsubscribe()
-    val stackTraceOpt = actualEvent.flatMap(ile => LogEvent.fromLogbackEvent(ile, RxLogback.defaultFormat).stackTrace)
+    val stackTraceOpt = actualEvent.flatMap { ile =>
+      LogEvent.fromLogbackEvent(ile, RxLogback.defaultFormat).stackTrace
+    }
     assert(stackTraceOpt.exists(_ contains testException.getClass.getName))
   }
 

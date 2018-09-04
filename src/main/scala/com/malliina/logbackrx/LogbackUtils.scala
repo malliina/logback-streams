@@ -17,7 +17,7 @@ object LogbackUtils {
     appender[T](appenderName, loggerName)
       .getOrElse(throw new NoSuchElementException(s"Unable to find appender with name: $appenderName"))
 
-  def installAppender(appender: Appender[ILoggingEvent], loggerName: String = org.slf4j.Logger.ROOT_LOGGER_NAME) = {
+  def installAppender(appender: Appender[ILoggingEvent], loggerName: String = org.slf4j.Logger.ROOT_LOGGER_NAME): Unit = {
     if (appender.getContext == null) {
       appender setContext LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     }

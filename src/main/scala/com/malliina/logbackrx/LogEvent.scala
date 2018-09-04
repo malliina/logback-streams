@@ -5,7 +5,7 @@ import ch.qos.logback.classic.spi.{ILoggingEvent, IThrowableProxy, StackTraceEle
 import com.malliina.play.json.ToStringWriter
 import play.api.libs.json._
 
-case class LogEvent(timeStamp: Long,
+case class LogEvent(timestamp: Long,
                     timeFormatted: String,
                     message: String,
                     loggerName: String,

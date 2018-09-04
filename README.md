@@ -9,7 +9,7 @@ You might find this useful if you wish to stream log events to your user interfa
 
 ## Installation
 
-    "com.malliina" %% "logback-rx" % "1.2.0"
+    "com.malliina" %% "logback-rx" % "1.3.0"
 
 ## Features
 

@@ -12,7 +12,6 @@ import rx.lang.scala.subjects.SerializedSubject
   * Therefore, this appender uses Java-style setter/getters so that it can be configured thru logback.xml
   */
 class BoundedReplayRxAppender[E] extends RxAppenderBase[E] {
-
   private var bufferSize = 1000
   private var innerSubject: SerializedSubject[E] = BoundedReplaySubject[E](bufferSize).toSerialized
 

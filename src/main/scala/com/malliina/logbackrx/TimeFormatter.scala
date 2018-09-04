@@ -15,7 +15,7 @@ class TimeFormatter(simpleDateFormat: String) {
     try {
       (specifiedFormat, new CachingDateFormatter(specifiedFormat))
     } catch {
-      case e: IllegalArgumentException =>
+      case _: IllegalArgumentException =>
         (CoreConstants.ISO8601_PATTERN, new CachingDateFormatter(CoreConstants.ISO8601_PATTERN))
     }
   }
