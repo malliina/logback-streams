@@ -13,10 +13,7 @@ import com.malliina.logbackrx.RxLogback.TimeFormatting
 class DefaultAkkaAppender extends AkkaAppender[ILoggingEvent]("AkkaAppender") with AkkaEventMapping
 
 object AkkaAppender {
-  def apply[E](as: ActorSystem): AkkaAppender[E] =
-    apply(ActorMaterializer()(as))
-
-  def apply[E](mat: Materializer) = new AkkaAppender[E](mat)
+  def apply[E](as: ActorSystem) = new AkkaAppender[E](as)
 }
 
 /** A Logback appender that makes log events available in `source` which is an Akka Streams Source.
@@ -26,10 +23,10 @@ object AkkaAppender {
   *
   * @tparam E type of log event, typically ILoggingEvent
   */
-class AkkaAppender[E](mat: Materializer) extends AppenderBase[E] {
-  def this(actorSystemName: String) = this(ActorMaterializer()(ActorSystem(actorSystemName)))
+class AkkaAppender[E](val as: ActorSystem) extends AppenderBase[E] {
+  def this(actorSystemName: String) = this(ActorSystem(actorSystemName))
 
-  implicit val m: Materializer = mat
+  implicit val mat: Materializer = ActorMaterializer()(as)
 
   private val producer = Source.actorRef[E](bufferSize = 1024, OverflowStrategy.dropHead)
   private val runnable = producer.toMat(BroadcastHub.sink(bufferSize = 1024))(Keep.both)

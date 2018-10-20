@@ -1,7 +1,6 @@
 package com.malliina.logback.akka
 
 import akka.actor.ActorSystem
-import akka.stream.ActorMaterializer
 import ch.qos.logback.classic.spi.ILoggingEvent
 import com.malliina.logbackrx.LogbackUtils
 import org.scalatest.FunSuite
@@ -15,8 +14,8 @@ class AkkaAppenderTests extends FunSuite {
 
   test("log to an akka streams Source") {
     val as = ActorSystem("test")
-    implicit val mat = ActorMaterializer()(as)
-    val appender = AkkaAppender[ILoggingEvent](mat)
+    val appender = AkkaAppender[ILoggingEvent](as)
+    implicit val mat = appender.mat
     LogbackUtils.installAppender(appender)
     log.info("test0")
     val run1 = appender.source.runFold[List[String]](Nil)((acc, e) => e.getMessage :: acc)
