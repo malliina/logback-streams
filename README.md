@@ -8,7 +8,7 @@ You might find this useful if you wish to stream log events to your user interfa
 
 ## Installation
 
-    "com.malliina" %% "logback-streams" % "1.4.0"
+    "com.malliina" %% "logback-streams" % "1.5.0"
 
 ## Usage
 
