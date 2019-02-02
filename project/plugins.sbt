@@ -1,4 +1,4 @@
-scalaVersion := "2.12.7"
+scalaVersion := "2.12.8"
 
 resolvers ++= Seq(
   ivyResolver("bintray-sbt-plugin-releases", "http://dl.bintray.com/content/sbt/sbt-plugin-releases"),
@@ -8,4 +8,4 @@ resolvers ++= Seq(
 def ivyResolver(name: String, urlStr: String) =
   Resolver.url(name, url(urlStr))(Resolver.ivyStylePatterns)
 
-addSbtPlugin("com.malliina" % "sbt-utils" % "0.9.0")
+addSbtPlugin("com.malliina" % "sbt-utils-maven" % "0.10.1")
