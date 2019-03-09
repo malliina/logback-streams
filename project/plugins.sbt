@@ -8,4 +8,4 @@ resolvers ++= Seq(
 def ivyResolver(name: String, urlStr: String) =
   Resolver.url(name, url(urlStr))(Resolver.ivyStylePatterns)
 
-addSbtPlugin("com.malliina" % "sbt-utils-maven" % "0.10.1")
+addSbtPlugin("com.malliina" % "sbt-utils-maven" % "0.11.0")
