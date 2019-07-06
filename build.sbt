@@ -5,7 +5,7 @@ gitUserName := "malliina"
 organization := "com.malliina"
 developerName := "Michael Skogberg"
 scalaVersion := "2.13.0"
-crossScalaVersions := "2.12.8" :: scalaVersion.value :: Nil
+crossScalaVersions := scalaVersion.value :: "2.12.8" :: Nil
 libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % "1.7.26",
   "com.typesafe.akka" %% "akka-stream" % "2.5.23",

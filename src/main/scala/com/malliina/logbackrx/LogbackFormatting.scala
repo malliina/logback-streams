@@ -2,7 +2,9 @@ package com.malliina.logbackrx
 
 import ch.qos.logback.core.{AppenderBase, CoreConstants}
 
-object RxLogback {
+object LogbackFormatting extends LogbackFormatting
+
+trait LogbackFormatting {
   val defaultFormatter = new TimeFormatter(CoreConstants.ISO8601_PATTERN)
 
   def defaultFormat(time: Long): String = {
@@ -10,7 +12,7 @@ object RxLogback {
   }
 
   trait TimeFormatting[E] extends AppenderBase[E] {
-    private var formatter: TimeFormatter = RxLogback.defaultFormatter
+    private var formatter: TimeFormatter = LogbackFormatting.defaultFormatter
 
     def getTimeFormat: String = formatter.timeFormat
 

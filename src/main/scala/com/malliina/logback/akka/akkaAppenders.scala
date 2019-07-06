@@ -8,7 +8,7 @@ import akka.stream.{ActorMaterializer, Materializer, OverflowStrategy}
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.AppenderBase
 import com.malliina.logbackrx.LogEvent
-import com.malliina.logbackrx.RxLogback.TimeFormatting
+import com.malliina.logbackrx.LogbackFormatting.TimeFormatting
 
 class DefaultAkkaAppender extends AkkaAppender[ILoggingEvent]("AkkaAppender") with AkkaEventMapping
 
