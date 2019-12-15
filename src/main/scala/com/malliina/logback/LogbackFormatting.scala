@@ -1,4 +1,4 @@
-package com.malliina.logbackrx
+package com.malliina.logback
 
 import ch.qos.logback.core.{AppenderBase, CoreConstants}
 

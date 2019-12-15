@@ -3,8 +3,8 @@ package com.malliina.logback.akka
 import akka.NotUsed
 import akka.stream.scaladsl.Source
 import ch.qos.logback.classic.spi.ILoggingEvent
-import com.malliina.logbackrx.LogEvent
-import com.malliina.logbackrx.LogbackFormatting.TimeFormatting
+import com.malliina.logback.LogEvent
+import com.malliina.logback.LogbackFormatting.TimeFormatting
 
 class DefaultAkkaAppender
     extends AkkaAppender[ILoggingEvent]("AkkaAppender")
