@@ -3,13 +3,12 @@ package com.malliina.logback.akka
 import akka.actor.ActorSystem
 import ch.qos.logback.classic.spi.ILoggingEvent
 import com.malliina.logback.LogbackUtils
-import org.scalatest.FunSuite
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, Future, Promise}
 
-class AkkaAppenderTests extends FunSuite {
+class AkkaAppenderTests extends munit.FunSuite {
   val log = LoggerFactory.getLogger(getClass)
 
   test("log to an akka streams Source") {
@@ -35,8 +34,8 @@ class AkkaAppenderTests extends FunSuite {
     }
     sleep()
     appender.close()
-    assert(await(run1) === List("test3", "test2", "test1", "test0"))
-    assert(await(run2) === List("test3"))
+    assert(await(run1) == List("test3", "test2", "test1", "test0"))
+    assert(await(run2) == List("test3"))
     assert(!never.isCompleted)
   }
 
