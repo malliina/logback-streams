@@ -1,11 +1,7 @@
 package com.malliina.logback
 
 import ch.qos.logback.classic.Level
-import ch.qos.logback.classic.spi.{
-  ILoggingEvent,
-  IThrowableProxy,
-  StackTraceElementProxy
-}
+import ch.qos.logback.classic.spi.{ILoggingEvent, IThrowableProxy, StackTraceElementProxy}
 import com.malliina.play.json.ToStringWriter
 import play.api.libs.json._
 
