@@ -5,13 +5,15 @@ import ch.qos.logback.classic.spi.{ILoggingEvent, IThrowableProxy, StackTraceEle
 import com.malliina.play.json.ToStringWriter
 import play.api.libs.json._
 
-case class LogEvent(timestamp: Long,
-                    timeFormatted: String,
-                    message: String,
-                    loggerName: String,
-                    threadName: String,
-                    level: Level,
-                    stackTrace: Option[String]) {
+case class LogEvent(
+  timestamp: Long,
+  timeFormatted: String,
+  message: String,
+  loggerName: String,
+  threadName: String,
+  level: Level,
+  stackTrace: Option[String]
+) {
 
   val hasStackTrace = stackTrace.nonEmpty
 }
@@ -19,8 +21,7 @@ case class LogEvent(timestamp: Long,
 object LogEvent {
   private def lineSep = "\n\t" // sys.props.get("line.separator") getOrElse "\n"
 
-  def fromLogbackEvent(e: ILoggingEvent,
-                       timeFormatter: Long => String): LogEvent = {
+  def fromLogbackEvent(e: ILoggingEvent, timeFormatter: Long => String): LogEvent = {
     val stackTrace = buildStackTrace(e).map(_ mkString lineSep)
     LogEvent(
       e.getTimeStamp,
@@ -38,8 +39,7 @@ object LogEvent {
     for {
       ex <- exOpt
       trace <- Option(ex.getStackTraceElementProxyArray) if trace.nonEmpty
-    } yield
-      s"${ex.getClassName}: ${ex.getMessage}" :: trace.map(_.toString).toList
+    } yield s"${ex.getClassName}: ${ex.getMessage}" :: trace.map(_.toString).toList
   }
 
   implicit object LevelFormat extends Format[Level] {
@@ -52,8 +52,7 @@ object LogEvent {
 
   implicit object ThrowableProxyWriter extends ToStringWriter[IThrowableProxy]
 
-  implicit object StackElementWriter
-      extends ToStringWriter[StackTraceElementProxy]
+  implicit object StackElementWriter extends ToStringWriter[StackTraceElementProxy]
 
   implicit val format = Json.format[LogEvent]
 }

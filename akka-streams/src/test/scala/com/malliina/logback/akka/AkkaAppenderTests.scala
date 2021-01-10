@@ -3,12 +3,13 @@ package com.malliina.logback.akka
 import akka.actor.ActorSystem
 import ch.qos.logback.classic.spi.ILoggingEvent
 import com.malliina.logback.LogbackUtils
+import munit.FunSuite
 import org.slf4j.LoggerFactory
 
 import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, Future, Promise}
 
-class AkkaAppenderTests extends munit.FunSuite {
+class AkkaAppenderTests extends FunSuite {
   val log = LoggerFactory.getLogger(getClass)
 
   test("log to an akka streams Source") {

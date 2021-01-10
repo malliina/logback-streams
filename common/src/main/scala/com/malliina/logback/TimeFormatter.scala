@@ -3,8 +3,7 @@ package com.malliina.logback
 import ch.qos.logback.core.CoreConstants
 import ch.qos.logback.core.util.CachingDateFormatter
 
-/**
-  * @param simpleDateFormat time format
+/** @param simpleDateFormat time format
   * @see ch.qos.logback.classic.pattern.DateConverter.java
   */
 class TimeFormatter(simpleDateFormat: String) {

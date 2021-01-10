@@ -30,11 +30,12 @@ val streams = logbackProject("akka-streams")
   .settings(
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-stream" % "2.6.5",
-      "org.scala-lang.modules" %% "scala-xml" % "1.3.0" % Test,
+      "org.scala-lang.modules" %% "scala-xml" % "1.3.0" % Test
     )
   )
 
-val all = project.in(file("."))
+val all = project
+  .in(file("."))
   .aggregate(common, streams, fs2)
   .settings(
     skip in publish := true,
