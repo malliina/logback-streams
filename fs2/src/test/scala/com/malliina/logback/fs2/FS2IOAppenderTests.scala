@@ -12,9 +12,9 @@ import fs2.Stream
 class FS2IOAppenderTests extends FunSuite {
   val log = LoggerFactory.getLogger(getClass)
 
-  test("streams") {
-    val hm = Stream.emit(1).covary[IO].compile.toList.unsafeRunSync().head
-    println(hm)
+  test("Stream.toList") {
+    val value = Stream.emit(1).covary[IO].compile.toList.unsafeRunSync().head
+    assertEquals(value, 1)
   }
 
   test("hi") {
@@ -22,15 +22,16 @@ class FS2IOAppenderTests extends FunSuite {
     LogbackUtils.installAppender(appender)
 
     val f = appender.logEvents
-      .map { e =>
-        println(s"$e")
-      }
-      .take(1)
+      .take(2)
       .compile
       .toVector
       .unsafeToFuture()
-    log.info("What")
-    await(f)
+    val firstMessage = "What"
+    log.info(firstMessage)
+    log.info("Yes!")
+    val events = await(f)
+    assertEquals(events.size, 2)
+    assertEquals(events.head.message, firstMessage)
   }
 
   def await[T](f: Future[T]): T = Await.result(f, 3.seconds)
