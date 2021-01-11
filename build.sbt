@@ -47,6 +47,6 @@ val all = project
 
 def logbackProject(name: String) = Project(name, file(name))
   .enablePlugins(MavenCentralPlugin)
-  .settings(moduleName := s"logback-$name")
+  .settings(moduleName := s"logback-$name", releaseProcess := tagReleaseProcess.value)
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
