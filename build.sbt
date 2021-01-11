@@ -15,14 +15,17 @@ inThisBuild(
   )
 )
 
-val common = logbackProject("common")
+val common = logbackProject("common").settings(
+  releaseProcess := tagReleaseProcess.value
+)
 
 val fs2 = logbackProject("fs2")
   .dependsOn(common)
   .settings(
     libraryDependencies ++= Seq(
       "co.fs2" %% "fs2-core" % "2.5.0"
-    )
+    ),
+    releaseProcess := tagReleaseProcess.value
   )
 
 val streams = logbackProject("akka-streams")
@@ -31,7 +34,8 @@ val streams = logbackProject("akka-streams")
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-stream" % "2.6.5",
       "org.scala-lang.modules" %% "scala-xml" % "1.3.0" % Test
-    )
+    ),
+    releaseProcess := tagReleaseProcess.value
   )
 
 val all = project
