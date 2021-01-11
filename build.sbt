@@ -42,11 +42,13 @@ val all = project
   .in(file("."))
   .aggregate(common, streams, fs2)
   .settings(
+    publishTo := Some(Resolver.file("Unused transient repository", file("target/unusedrepo"))),
     skip in publish := true,
     publishArtifact := false,
     packagedArtifacts := Map.empty,
     publish := {},
-    publishLocal := {}
+    publishLocal := {},
+    releaseProcess := (tagReleaseProcess in common).value
   )
 
 def logbackProject(name: String) = Project(name, file(name))
