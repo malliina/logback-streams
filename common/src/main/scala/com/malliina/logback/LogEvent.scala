@@ -2,8 +2,8 @@ package com.malliina.logback
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.spi.{ILoggingEvent, IThrowableProxy, StackTraceElementProxy}
-import com.malliina.play.json.ToStringWriter
-import play.api.libs.json._
+import io.circe._
+import io.circe.generic.semiauto._
 
 case class LogEvent(
   timestamp: Long,
@@ -14,7 +14,6 @@ case class LogEvent(
   level: Level,
   stackTrace: Option[String]
 ) {
-
   val hasStackTrace = stackTrace.nonEmpty
 }
 
@@ -42,17 +41,14 @@ object LogEvent {
     } yield s"${ex.getClassName}: ${ex.getMessage}" :: trace.map(_.toString).toList
   }
 
-  implicit object LevelFormat extends Format[Level] {
-    override def writes(o: Level): JsValue =
-      Json.toJson(o.levelStr)
+  implicit val levelCodec: Codec[Level] = Codec.from(
+    Decoder.decodeString.map(s => Level.toLevel(s)),
+    Encoder.encodeString.contramap(l => l.levelStr)
+  )
+  implicit val throwableProxyEncoder: Encoder[IThrowableProxy] =
+    Encoder.encodeString.contramap(itp => itp.toString)
+  implicit val stackElementEncoder: Encoder[StackTraceElementProxy] =
+    Encoder.encodeString.contramap(step => step.toString)
 
-    override def reads(json: JsValue): JsResult[Level] =
-      json.validate[String].map(name => Level.toLevel(name))
-  }
-
-  implicit object ThrowableProxyWriter extends ToStringWriter[IThrowableProxy]
-
-  implicit object StackElementWriter extends ToStringWriter[StackTraceElementProxy]
-
-  implicit val format = Json.format[LogEvent]
+  implicit val format: Codec[LogEvent] = deriveCodec[LogEvent]
 }
