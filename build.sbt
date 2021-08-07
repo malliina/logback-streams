@@ -6,7 +6,7 @@ inThisBuild(
     gitUserName := "malliina",
     organization := "com.malliina",
     developerName := "Michael Skogberg",
-    scalaVersion := "3.0.0",
+    scalaVersion := "3.0.1",
     crossScalaVersions := scalaVersion.value :: "2.13.6" :: Nil,
     releaseCrossBuild := true,
     libraryDependencies ++=
@@ -29,16 +29,6 @@ val fs2 = logbackProject("fs2")
       "co.fs2" %% "fs2-core" % "2.5.9"
     )
   )
-
-//val streams = logbackProject("akka-streams")
-//  .dependsOn(common)
-//  .settings(
-//    libraryDependencies ++= Seq(
-//      "com.typesafe.akka" %% "akka-stream" % "2.6.5",
-//      "org.scala-lang.modules" %% "scala-xml" % "1.3.0" % Test
-//    ),
-//    releaseProcess := tagReleaseProcess.value
-//  )
 
 val all = project
   .in(file("."))

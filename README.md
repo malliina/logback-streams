@@ -3,18 +3,4 @@
 
 # logback-streams
 
-This library provides an [Akka Streams](https://doc.akka.io/docs/akka/2.5/stream/) Source for events logged using Logback.
-You might find this useful if you wish to stream log events to your user interface with minimal delay.
-
-## Installation
-
-    "com.malliina" %% "logback-streams" % "1.7.0"
-
-## Usage
-
-Configure an [AkkaAppender](src/main/scala/com/malliina/logback/akka/AkkaAppender.scala) in 
-your Logback configuration.
-
-Events you log using the SLF4J API with Logback will now be emitted by the Akka Streams Stream:
-
-    log.info("Hello, world")
+Merged into https://github.com/malliina/logstreams.
